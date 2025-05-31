@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор зарплаты</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">💰 ЗП</div>
+    
+    <div class="sidebar-buttons">
+      <button class="btn primary" onclick="addEmployee()">
+        <span class="icon">+</span> Добавить
+      </button>
+      <button class="btn success" onclick="calculate()">
+        <span class="icon">📊</span> Рассчитать
+      </button>
+      <button class="btn secondary" onclick="copyToClipboard()">
+        <span class="icon">📋</span> Скопировать
+      </button>
+      <button class="btn reset" onclick="resetAll()">
+        <span class="icon">🔄</span> Сбросить
+      </button>
+    </div>
+    
+    <div class="legend">
+      <h3>Ставки:</h3>
+      <div class="legend-item">
+        <span class="legend-label">A:</span>
+        <span>СПЕЦЗАКАЗЫ = 25 АР</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-label">B:</span>
+        <span>ПРИЁМ БЛОКОВ = 7 АР</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-label">C:</span>
+        <span>СОРТИРОВКА = 10 АР</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-label">D:</span>
+        <span>ПЕРЕНОС = 10 АР</span>
+      </div>
+    </div>
+    
+    <span id="copyMsg" class="copy-success"></span>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Калькулятор заработной платы</h1>
+      <p class="subtitle">Расчет выплат по типам отчетов</p>
+    </header>
+
+    <div class="employees-container">
+      <!-- Легенда над полями ввода -->
+      <div class="report-legend">
+        <div class="legend-placeholder">Сотрудник</div>
+        <div class="legend-item">A: СПЕЦЗАКАЗЫ</div>
+        <div class="legend-item">B: ПРИЁМ БЛОКОВ</div>
+        <div class="legend-item">C: СОРТИРОВКА</div>
+        <div class="legend-item">D: ПЕРЕНОС</div>
+        <div class="legend-placeholder">Действие</div>
+      </div>
+      
+      <div id="employees"></div>
+    </div>
+
+    <div id="result" class="result-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
