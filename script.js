@@ -184,14 +184,58 @@ function copyToClipboard() {
   if (!table) return;
 
   let text = "";
-  for (let row of table.rows) {
-    const cells = Array.from(row.cells).map(cell => cell.textContent.trim());
-    text += cells.join('\t') + '\n';
+  for (let i = 0; i < table.rows.length; i++) {
+    const row = table.rows[i];
+    const cells = Array.from(row.cells);
+    let rowText = [];
+    
+    for (let j = 0; j < cells.length; j++) {
+      const cell = cells[j];
+      let cellText = cell.textContent.trim();
+      
+      // Для строк с отчетами (кроме заголовка и итоговой строки)
+      if (i > 0 && i < 5) {
+        // Для первой ячейки берем только название отчета
+        if (j === 0) {
+          const reportType = cell.querySelector('.report-type');
+          if (reportType) {
+            cellText = reportType.textContent.trim();
+          }
+        }
+      }
+      
+      rowText.push(cellText);
+    }
+    
+    text += rowText.join('\t') + '\n';
   }
 
   navigator.clipboard.writeText(text).then(() => {
     const msg = document.getElementById("copyMsg");
     msg.textContent = "Таблица скопирована!";
+    setTimeout(() => msg.textContent = "", 3000);
+  });
+}
+
+function copySummaryToClipboard() {
+  const activeEmployees = employees.filter(e => e && e.name.trim());
+  if (activeEmployees.length === 0) {
+    const msg = document.getElementById("copyMsg");
+    msg.textContent = "Нет данных для копирования";
+    setTimeout(() => msg.textContent = "", 3000);
+    return;
+  }
+
+  let text = "Сотрудник\tЗарплата (АР)\n";
+  
+  activeEmployees.forEach(e => {
+    const total = ['A', 'B', 'C', 'D'].reduce((sum, t) => sum + e[t] * rates[t], 0);
+    text += `${e.name}\t${total}\n`;
+  });
+
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = document.getElementById("copyMsg");
+    msg.textContent = "Смета скопирована!";
     setTimeout(() => msg.textContent = "", 3000);
   });
 }

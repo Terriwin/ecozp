@@ -155,11 +155,16 @@ h1 {
   text-align: center;
 }
 
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .legend-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.8rem;
   font-size: 0.95rem;
   padding: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
@@ -176,6 +181,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .copy-success {
@@ -285,7 +291,6 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Убираем стрелочки в числовых полях */
 .report-value::-webkit-outer-spin-button,
 .report-value::-webkit-inner-spin-button {
   -webkit-appearance: none;

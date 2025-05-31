@@ -15,10 +15,13 @@
         <span class="icon">+</span> Добавить
       </button>
       <button class="btn success" onclick="calculate()">
-        <span class="icon">📊</span> Расcчитать
+        <span class="icon">📊</span> Рассчитать
       </button>
       <button class="btn secondary" onclick="copyToClipboard()">
-        <span class="icon">📋</span> Скопировать
+        <span class="icon">📋</span> Скопировать таблицу
+      </button>
+      <button class="btn secondary" onclick="copySummaryToClipboard()">
+        <span class="icon">💵</span> Скопировать смету
       </button>
       <button class="btn reset" onclick="resetAll()">
         <span class="icon">🔄</span> Сбросить
@@ -55,7 +58,6 @@
     </header>
 
     <div class="employees-container">
-      <!-- Легенда над полями ввода -->
       <div class="report-legend">
         <div class="legend-placeholder">Сотрудник</div>
         <div class="legend-item">A: СПЕЦЗАКАЗЫ</div>
